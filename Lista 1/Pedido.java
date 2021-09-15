@@ -1,5 +1,7 @@
 import java.util.Scanner;
+
 //Problema: https://www.urionlinejudge.com.br/judge/pt/problems/view/1038
+
 public class Pedido {
     private int codigo;
     private int quantidade;
