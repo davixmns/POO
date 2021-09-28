@@ -1,11 +1,13 @@
 import java.util.Scanner;
 import java.io.IOException;
 
+//Problema: https://www.urionlinejudge.com.br/judge/pt/problems/view/2311
+
 public class Main {
     static class Salto {
         private String NomeSaltadora;
-        private double dificuldadeSalto;
-        double vetorNotas[] = new double[7];
+        private double dificuldade;
+        double notas[] = new double[7];
 
         public void setNomeSaltadora(String nome) {
             this.NomeSaltadora = nome;
@@ -16,48 +18,48 @@ public class Main {
         }
 
         public double setNota(int indice, double nota) {
-            this.vetorNotas[indice] = nota;
+            this.notas[indice] = nota;
             return nota;
         }
 
         public double getNota(int indice) {
-            return this.vetorNotas[indice];
+            return this.notas[indice];
         }
 
-        public void setDificuldadeSalto(double dificuldade) {
-            this.dificuldadeSalto = dificuldade;
+        public void setDificuldade(double dificuldade) {
+            this.dificuldade = dificuldade;
         }
 
-        public double getDificuldadeSalto() {
-            return this.dificuldadeSalto;
+        public double getDificuldade() {
+            return this.dificuldade;
         }
 
         public void zerarMenorNota() {
             int indice = 0;
-            for (int i = 1; i < this.vetorNotas.length; i++) {
-                if (this.vetorNotas[i] < this.vetorNotas[indice]) {
+            for (int i = 1; i < this.notas.length; i++) {
+                if (this.notas[i] < this.notas[indice]) {
                     indice = i;
                 }
             }
-            vetorNotas[indice] = 0;
+            notas[indice] = 0;
         }
 
         public void zerarMaiorNota() {
             int indice = 0;
-            for (int i = 1; i < this.vetorNotas.length; i++) {
-                if (this.vetorNotas[i] > this.vetorNotas[indice]) {
+            for (int i = 1; i < this.notas.length; i++) {
+                if (this.notas[i] > this.notas[indice]) {
                     indice = i;
                 }
             }
-            vetorNotas[indice] = 0;
+            notas[indice] = 0;
         }
 
-        public double calcularNotaFinal(double dificuldade) {
+        public double calcularNota(double dificuldade) {
             zerarMenorNota();
             zerarMaiorNota();
             double soma = 0;
-            for (int i = 0; i < this.vetorNotas.length; i++) {
-                soma += this.vetorNotas[i];
+            for (int i = 0; i < this.notas.length; i++) {
+                soma += this.notas[i];
             }
             return soma * dificuldade;
         }
@@ -70,15 +72,15 @@ public class Main {
 
         int nNotas = 7;
         int nSaltadores = entrada.nextInt();
-        for(int i = 0; i < nSaltadores; i++){
+        for (int i = 0; i < nSaltadores; i++) {
             salto.setNomeSaltadora(entrada.next());
-            salto.setDificuldadeSalto(entrada.nextDouble());
+            salto.setDificuldade(entrada.nextDouble());
 
-            for(int j = 0; j < nNotas; j++) {
+            for (int j = 0; j < nNotas; j++) {
                 salto.setNota(j, entrada.nextDouble());
             }
             System.out.print(salto.getNomeSaltadora() + " ");
-            System.out.printf("%.2f\n", salto.calcularNotaFinal(salto.getDificuldadeSalto()));
+            System.out.printf("%.2f\n", salto.calcularNota(salto.getDificuldade()));
         }
     }
 }

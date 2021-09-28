@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.IOException;
 
 //Problema: https://www.urionlinejudge.com.br/judge/pt/problems/view/1038
 
@@ -36,7 +37,7 @@ public class Pedido {
         return conta;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner entrada = new Scanner(System.in);
         Pedido pedido = new Pedido();
         pedido.setCodigo(entrada.nextInt());
