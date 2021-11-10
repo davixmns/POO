@@ -2,19 +2,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.IOException;
 
+//Problema: https://www.beecrowd.com.br/judge/pt/problems/view/1961
+
 public class Main {
     static class Jogo {
         public void jogar(Mapa mapa, Sapo sapo) {
             boolean resultado = true;
 
             for (int i = 0; i < mapa.getnCanos() - 1; i++) {
-                if (mapa.cano(i) > mapa.cano(i + 1)) {
-                    if (mapa.cano(i) - mapa.cano(i + 1) > sapo.getAlturaDoPulo()) {
+                if (mapa.canos.get(i) > mapa.canos.get(i + 1)) {
+                    if (mapa.canos.get(i) - mapa.canos.get(i + 1) > sapo.getAlturaDoPulo()) {
                         resultado = false;
                         break;
                     }
-                } else if (mapa.cano(i) < mapa.cano(i + 1)) {
-                    if (mapa.cano(i + 1) - mapa.cano(i) > sapo.getAlturaDoPulo()) {
+                } else if (mapa.canos.get(i) < mapa.canos.get(i + 1)) {
+                    if (mapa.canos.get(i + 1) - mapa.canos.get(i) > sapo.getAlturaDoPulo()) {
                         resultado = false;
                         break;
                     }
@@ -45,7 +47,7 @@ public class Main {
 
     static class Mapa extends Jogo {
         private int nCanos;
-        ArrayList<Integer> lista = new ArrayList<Integer>();
+        ArrayList<Integer> canos = new ArrayList<>();
 
         public int getnCanos() {
             return nCanos;
@@ -55,13 +57,7 @@ public class Main {
             this.nCanos = nCanos;
         }
 
-        public int cano(int i) {
-            return lista.get(i);
-        }
 
-        public void addCano(int cano) {
-            lista.add(cano);
-        }
     }
 
     public static void main(String[] args) throws IOException {
@@ -74,7 +70,7 @@ public class Main {
         mapa.setnCanos(scanner.nextInt());
 
         for (int i = 0; i < mapa.getnCanos(); i++) {
-            mapa.addCano(scanner.nextInt());
+            mapa.canos.add(scanner.nextInt());
         }
         jogo.jogar(mapa, sapo);
     }
